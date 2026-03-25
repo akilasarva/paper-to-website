@@ -1,6 +1,7 @@
 import re
-import arxiv
+import xml.etree.ElementTree as ET
 import pdfplumber
+import requests
 import streamlit as st
 import streamlit.components.v1 as components
 from openai import OpenAI
@@ -11,23 +12,29 @@ openai_client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 
 def fetch_arxiv_paper(url: str) -> dict:
-    """Extract ArXiv ID from URL and fetch paper metadata."""
+    """Extract ArXiv ID from URL and fetch paper metadata via the ArXiv API."""
     match = re.search(r"arxiv\.org/(?:abs|pdf)/([0-9]{4}\.[0-9]+)", url)
     if not match:
         raise ValueError("Could not find a valid ArXiv ID in the URL.")
 
     arxiv_id = match.group(1)
-    client = arxiv.Client()
-    results = list(client.results(arxiv.Search(id_list=[arxiv_id])))
-    if not results:
+    api_url = f"https://export.arxiv.org/api/query?id_list={arxiv_id}"
+    response = requests.get(api_url, timeout=15)
+    response.raise_for_status()
+
+    ns = {"atom": "http://www.w3.org/2005/Atom"}
+    root = ET.fromstring(response.text)
+    entry = root.find("atom:entry", ns)
+    if entry is None:
         raise ValueError(f"No paper found for ArXiv ID: {arxiv_id}")
 
-    paper = results[0]
-    return {
-        "title": paper.title,
-        "authors": ", ".join(a.name for a in paper.authors),
-        "abstract": paper.summary,
-    }
+    title = entry.find("atom:title", ns).text.strip()
+    abstract = entry.find("atom:summary", ns).text.strip()
+    authors = ", ".join(
+        a.find("atom:name", ns).text
+        for a in entry.findall("atom:author", ns)
+    )
+    return {"title": title, "authors": authors, "abstract": abstract}
 
 
 st.title("Research Project Website Generator")
