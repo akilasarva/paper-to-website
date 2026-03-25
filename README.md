@@ -1,7 +1,7 @@
-# 🌊 Robotics Project Page Generator
+# Robotics Project Page Generator
 **Automated Academic Website Builder**
 
-This tool allows researchers to instantly generate high-fidelity, MIT REALM-style academic project pages from their research papers. It is designed for lab projects and rapid dissemination, ensuring your work has a professional home online even before it hits ArXiv.
+This tool allows you to instantly generate high-fidelity academic project pages from your research papers. It is designed for lab projects and rapid dissemination, ensuring your work has a professional home online even before it hits ArXiv.
 
 ---
 
@@ -32,3 +32,27 @@ To run this application locally:
    ```bash
    git clone [https://github.com/akilasarva/paper-to-website.git](https://github.com/akilasarva/paper-to-website.git)
    cd paper-to-website
+
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+
+3. **Set your API Key**:
+   Create a `.streamlit/secrets.toml` file and add your key:
+   ```toml
+   OPENAI_API_KEY = "sk-proj-your-key-here"
+
+4. **Run the app**:
+   ```bash
+   streamlit run app.py
+
+### 🌐 Hosting
+This app is designed to be hosted on **Streamlit Community Cloud**. 
+
+1. **GitHub**: Push your `app.py`, `requirements.txt`, and `README.md` to a GitHub repository.
+2. **Streamlit Share**: Connect your repository to [share.streamlit.io](https://share.streamlit.io/).
+3. **Secrets**: In the Streamlit deployment dashboard, go to **Settings > Secrets** and paste your API key:
+   ```toml
+   OPENAI_API_KEY = "sk-proj-your-actual-key-here"
+
+4. **Deploy**: Once saved, your app will be live at a custom URL for your lab to use.
