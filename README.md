@@ -1,4 +1,4 @@
-# Robotics Project Page Generator
+# RRG Project Page Generator
 **Automated Academic Website Builder**
 
 This tool allows you to instantly generate high-fidelity academic project pages from your research papers. It is designed for lab projects and rapid dissemination, ensuring your work has a professional home online even before it hits ArXiv.
@@ -7,9 +7,9 @@ This tool allows you to instantly generate high-fidelity academic project pages 
 
 ### 🚀 Key Features
 * **Full-Text Intelligence**: Upload a PDF or provide an ArXiv link; the app uses GPT-4o to extract technical details and write comprehensive Methodology and Results sections.
-* **High-Fidelity Design**: Generates a single-file `index.html` using Tailwind CSS, featuring a clean, responsive layout inspired by the DGPPO project page.
+* **High-Fidelity Design**: Generates a single-file `index.html` using Tailwind CSS, featuring a clean, responsive layout.
 * **Live Preview**: View your website interactively inside the app before you download it.
-* **Contextual Placeholders**: Includes smart SVG icons and captions for figures and videos based on your paper's actual content.
+* **Contextual Placeholders**
 
 ---
 
