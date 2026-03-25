@@ -47,7 +47,7 @@ To run this application locally:
    streamlit run app.py
 
 ### 🌐 Hosting
-This app is designed to be hosted on **Streamlit Community Cloud**. 
+This app is designed to be hosted on **Streamlit Community Cloud**. Use mine [rrg-paper-to-website.streamlit.app](https://rrg-paper-to-website.streamlit.app/) or make your own:
 
 1. **GitHub**: Push your `app.py`, `requirements.txt`, and `README.md` to a GitHub repository.
 2. **Streamlit Share**: Connect your repository to [share.streamlit.io](https://share.streamlit.io/).
